@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Legacy Laravel project (READ ONLY - reference only)
+../cmkpebook/vendor/
+../cmkpebook/node_modules/
+../cmkpebook/storage/
+../cmkpebook/bootstrap/cache/
+../cmkpebook/public/
+
+# Temp files
+*.tmp
+*.swp
+*.swo
+*~
+
