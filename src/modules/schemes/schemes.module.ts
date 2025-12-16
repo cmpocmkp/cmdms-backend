@@ -6,6 +6,7 @@ import { SchemeCosting } from './entities/scheme-costing.entity';
 import { SchemeBudget } from './entities/scheme-budget.entity';
 import { SchemeExpenditure } from './entities/scheme-expenditure.entity';
 import { SchemeRevision } from './entities/scheme-revision.entity';
+import { SchemesController } from './schemes.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([
@@ -15,6 +16,7 @@ import { SchemeRevision } from './entities/scheme-revision.entity';
     SchemeExpenditure,
     SchemeRevision,
   ])],
+  controllers: [SchemesController],
   providers: [SchemesService],
   exports: [SchemesService, TypeOrmModule],
 })
