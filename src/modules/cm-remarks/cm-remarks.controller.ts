@@ -5,7 +5,7 @@ import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreateCmRemarkDto } from './dto/create-cm-remark.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
-@ApiTags('CM Remarks')
+@ApiTags('cm-remarks')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('cm-remarks')

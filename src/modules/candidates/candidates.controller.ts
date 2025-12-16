@@ -5,7 +5,7 @@ import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreateCandidateDto } from './dto/create-candidate.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
-@ApiTags('Candidates')
+@ApiTags('candidates')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('candidates')

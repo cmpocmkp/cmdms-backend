@@ -5,7 +5,7 @@ import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreateLetterDto } from './dto/create-letter.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
-@ApiTags('Letters & Documents')
+@ApiTags('letters')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('letters')

@@ -5,7 +5,7 @@ import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreateSectorialMeetingDto } from './dto/create-sectorial-meeting.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
-@ApiTags('Sectorial Meetings')
+@ApiTags('sectorial-meetings')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('sectorial-meetings')

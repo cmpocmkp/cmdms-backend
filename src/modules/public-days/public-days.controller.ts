@@ -5,7 +5,7 @@ import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreatePublicDayDto } from './dto/create-public-day.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
-@ApiTags('Public Days')
+@ApiTags('public-days')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('public-days')

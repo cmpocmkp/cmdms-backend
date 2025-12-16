@@ -5,7 +5,7 @@ import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreateSenateMeetingDto } from './dto/create-senate-meeting.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
-@ApiTags('Senate Meetings')
+@ApiTags('senate-meetings')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('senate-meetings')
