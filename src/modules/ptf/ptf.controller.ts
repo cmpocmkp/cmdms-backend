@@ -53,22 +53,17 @@ export class PtfController {
     return this.ptfService.findOne(id);
   }
 
-  @Post('issues/:id/response')
+
+  // Advanced features - to be implemented
+  // @Post('issues/:id/response')
+  // @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
+  // @ApiOperation({ summary: 'Add response to PTF issue' })
+  // addResponse(@Param('id', ParseIntPipe) issueId: number, @Body() responseDto: any, @CurrentUser('id') userId: number) {
+  //   return this.ptfService.addResponse(issueId, responseDto, userId);
+  // }
+
+  @Post('meetings')
   @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
-  @ApiOperation({ summary: 'Add response to PTF issue' })
-  @ApiResponse({ status: 201, description: 'Response added successfully' })
-//   @ApiResponse({ status: 404, description: 'PTF issue not found' })
-//   @ApiResponse({ status: 401, description: 'Unauthorized' })
-//   addResponse(
-//     @Param('id', ParseIntPipe) issueId: number,
-//     @Body() responseDto: any,
-//     @CurrentUser('id') userId: number,
-//   ) {
-//     return this.ptfService.addResponse(issueId, responseDto, userId);
-//   }
-// 
-//   @Post('meetings')
-//   @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
   @ApiOperation({ summary: 'Create a PTF meeting' })
   @ApiResponse({ status: 201, description: 'PTF meeting created successfully' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
@@ -79,13 +74,4 @@ export class PtfController {
   ) {
     return this.ptfService.createMeeting(createMeetingDto, userId);
   }
-// 
-//   @Get('meetings')
-//   @ApiOperation({ summary: 'Get all PTF meetings' })
-//   @ApiResponse({ status: 200, description: 'Return all PTF meetings' })
-//   @ApiResponse({ status: 401, description: 'Unauthorized' })
-//   findAllMeetings() {
-//     return this.ptfService.findAllMeetings();
-//   }
 }
-

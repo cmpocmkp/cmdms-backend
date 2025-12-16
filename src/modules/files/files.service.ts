@@ -12,7 +12,7 @@ export class FilesService {
 
   async create(createDto: any, userId: number): Promise<File> {
     const file = this.filesRepository.create({ ...createDto, uploadedBy: userId });
-    return await this.filesRepository.save(file);
+    return await this.filesRepository.save(file) as unknown as File;
   }
 
   async findAll(): Promise<File[]> {

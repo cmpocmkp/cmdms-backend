@@ -80,7 +80,7 @@ export class BoardsController {
     @Body() createMeetingDto: CreateBoardMeetingDto,
     @CurrentUser('id') userId: number,
   ) {
-    return this.boardsService.createMeeting(boardId, createMeetingDto, userId);
+    return this.boardsService.createMeeting({ ...createMeetingDto, boardId }, userId);
   }
 
   @Get(':id/meetings')
@@ -89,21 +89,16 @@ export class BoardsController {
   @ApiResponse({ status: 404, description: 'Board not found' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   getMeetings(@Param('id', ParseIntPipe) boardId: number) {
-//     return this.boardsService.getMeetings(boardId);
-//   }
-// 
-//   @Post(':id/acts')
-//   @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
-//   @ApiOperation({ summary: 'Record a board act/resolution' })
-//   @ApiResponse({ status: 201, description: 'Act recorded successfully' })
-  @ApiResponse({ status: 404, description: 'Board not found' })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
-  recordAct(
-    @Param('id', ParseIntPipe) boardId: number,
-    @Body() actDto: any,
-    @CurrentUser('id') userId: number,
-  ) {
-//     return this.boardsService.recordAct(boardId, actDto, userId);
-//   }
-// }
-// 
+    // TODO: Implement in service
+    return { message: 'Feature coming soon', boardId };
+  }
+
+  // Advanced features - to be implemented
+  // @Post(':id/acts')
+  // @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
+  // @ApiOperation({ summary: 'Record a board act/resolution' })
+  // recordAct(@Param('id', ParseIntPipe) boardId: number, @Body() actDto: any, @CurrentUser('id') userId: number) {
+  //   return this.boardsService.recordAct(boardId, actDto, userId);
+  // }
+}
+

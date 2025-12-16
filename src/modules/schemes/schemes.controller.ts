@@ -100,18 +100,14 @@ export class SchemesController {
   addRevision(
     @Param('id', ParseIntPipe) schemeId: number,
     @Body() revisionDto: any,
-    @CurrentUser('id') userId: number,
   ) {
-    return this.schemesService.addRevision(schemeId, revisionDto, userId);
+    return this.schemesService.addRevision(schemeId, revisionDto);
   }
 
-  @Get(':id/financial-progress')
-  @ApiOperation({ summary: 'Get financial progress of scheme' })
-//   @ApiResponse({ status: 200, description: 'Return financial progress' })
-//   @ApiResponse({ status: 404, description: 'Scheme not found' })
-//   @ApiResponse({ status: 401, description: 'Unauthorized' })
-//   getFinancialProgress(@Param('id', ParseIntPipe) schemeId: number) {
-//     return this.schemesService.getFinancialProgress(schemeId);
-//   }
-// }
-// 
+  // Advanced feature - to be implemented
+  // @Get(':id/financial-progress')
+  // @ApiOperation({ summary: 'Get financial progress of scheme' })
+  // getFinancialProgress(@Param('id', ParseIntPipe) schemeId: number) {
+  //   return this.schemesService.getFinancialProgress(schemeId);
+  // }
+}

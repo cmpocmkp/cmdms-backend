@@ -12,7 +12,7 @@ export class InaugurationsService {
 
   async create(createDto: any, userId: number): Promise<Inauguration> {
     const inauguration = this.inaugurationsRepository.create({ ...createDto, createdBy: userId });
-    return await this.inaugurationsRepository.save(inauguration);
+    return await this.inaugurationsRepository.save(inauguration) as unknown as Inauguration;
   }
 
   async findAll(): Promise<Inauguration[]> {

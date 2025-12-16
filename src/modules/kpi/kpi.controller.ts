@@ -107,12 +107,11 @@ export class KpiController {
     return this.kpiService.getDataByKpi(kpiId, start, end);
   }
 
-//   @Get('department/:departmentId/summary')
-//   @ApiOperation({ summary: 'Get KPI summary for a department' })
-//   @ApiResponse({ status: 200, description: 'Return KPI summary' })
-//   @ApiResponse({ status: 401, description: 'Unauthorized' })
-//   getDepartmentSummary(@Param('departmentId', ParseIntPipe) departmentId: number) {
-//     return this.kpiService.getDepartmentSummary(departmentId);
-//   }
+  // Advanced feature - to be implemented
+  // @Get('department/:departmentId/summary')
+  // @ApiOperation({ summary: 'Get KPI summary for a department' })
+  // getDepartmentSummary(@Param('departmentId', ParseIntPipe) departmentId: number) {
+  //   return this.kpiService.getDepartmentSummary(departmentId);
+  // }
 }
 

@@ -13,7 +13,8 @@ export class NotificationsController {
   @ApiOperation({ summary: 'Create a notification' })
   @ApiResponse({ status: 201, description: 'Notification created' })
   create(@Body() createDto: any) {
-    return this.notificationsService.create(createDto);
+    const { userId, type, title, message, notifiableType, notifiableId } = createDto;
+    return this.notificationsService.create(userId, type, title, message, notifiableType, notifiableId);
   }
 
   @Get()

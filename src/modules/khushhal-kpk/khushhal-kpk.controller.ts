@@ -66,26 +66,17 @@ export class KhushhalKpkController {
     return this.khushhalKpkService.submitProgress(taskId, progressDto, userId);
   }
 
-  @Post('tasks/:id/reply')
-  @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
-  @ApiOperation({ summary: 'Reply to a task' })
-  @ApiResponse({ status: 201, description: 'Reply added successfully' })
-  @ApiResponse({ status: 404, description: 'Task not found' })
-//   @ApiResponse({ status: 401, description: 'Unauthorized' })
-//   addReply(
-//     @Param('id', ParseIntPipe) taskId: number,
-//     @Body() replyDto: any,
-//     @CurrentUser('id') userId: number,
-//   ) {
-//     return this.khushhalKpkService.addReply(taskId, replyDto, userId);
-//   }
-// 
-//   @Get('department/:departmentId/status')
-  @ApiOperation({ summary: 'Get department task status' })
-//   @ApiResponse({ status: 200, description: 'Return task status' })
-//   @ApiResponse({ status: 401, description: 'Unauthorized' })
-//   getDepartmentStatus(@Param('departmentId', ParseIntPipe) departmentId: number) {
-//     return this.khushhalKpkService.getDepartmentStatus(departmentId);
-//   }
-// }
-// 
+  // Advanced features - to be implemented
+  // @Post('tasks/:id/reply')
+  // @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
+  // @ApiOperation({ summary: 'Reply to a task' })
+  // addReply(@Param('id', ParseIntPipe) taskId: number, @Body() replyDto: any, @CurrentUser('id') userId: number) {
+  //   return this.khushhalKpkService.addReply(taskId, replyDto, userId);
+  // }
+
+  // @Get('department/:departmentId/status')
+  // @ApiOperation({ summary: 'Get department task status' })
+  // getDepartmentStatus(@Param('departmentId', ParseIntPipe) departmentId: number) {
+  //   return this.khushhalKpkService.getDepartmentStatus(departmentId);
+  // }
+}

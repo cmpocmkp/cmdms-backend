@@ -25,12 +25,12 @@ export class TagsController {
     return this.tagsService.findAll();
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Get tag by ID' })
-  @ApiResponse({ status: 200, description: 'Return tag' })
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.tagsService.findOne(id);
-  }
+  // Note: Use findAll() and filter by ID or use getTagsForEntity()
+  // @Get(':id')
+  // @ApiOperation({ summary: 'Get tag by ID' })
+  // findOne(@Param('id', ParseIntPipe) id: number) {
+  //   return this.tagsService.findOne(id);
+  // }
 
   @Post('attach')
   @ApiOperation({ summary: 'Attach tag to entity' })
@@ -53,12 +53,12 @@ export class TagsController {
     return this.tagsService.getTagsForEntity(type, id);
   }
 
-  @Delete(':id')
-  @Roles(RolesEnum.ADMIN)
-  @ApiOperation({ summary: 'Delete tag' })
-  @ApiResponse({ status: 200, description: 'Tag deleted' })
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.tagsService.remove(id);
-  }
+  // Note: Use removeTag() to detach tags from entities
+  // @Delete(':id')
+  // @Roles(RolesEnum.ADMIN)
+  // @ApiOperation({ summary: 'Delete tag' })
+  // remove(@Param('id', ParseIntPipe) id: number) {
+  //   return this.tagsService.remove(id);
+  // }
 }
 

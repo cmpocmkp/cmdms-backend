@@ -12,7 +12,7 @@ export class WelfareService {
 
   async create(createDto: any, userId: number): Promise<WelfareInitiative> {
     const initiative = this.welfareRepository.create({ ...createDto, createdBy: userId });
-    return await this.welfareRepository.save(initiative);
+    return await this.welfareRepository.save(initiative) as unknown as WelfareInitiative;
   }
 
   async findAll(): Promise<WelfareInitiative[]> {
