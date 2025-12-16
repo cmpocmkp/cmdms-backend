@@ -37,6 +37,7 @@ import { InaugurationsModule } from './modules/inaugurations/inaugurations.modul
 import { CandidatesModule } from './modules/candidates/candidates.module';
 import { LettersModule } from './modules/letters/letters.module';
 import { ReportsModule } from './modules/reports/reports.module';
+import { MigrationModule } from './modules/migration/migration.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { PermissionsGuard } from './common/guards/permissions.guard';
@@ -97,6 +98,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
     CandidatesModule,
     LettersModule,
     ReportsModule,
+    MigrationModule,
   ],
   controllers: [AppController],
   providers: [
