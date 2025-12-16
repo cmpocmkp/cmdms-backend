@@ -26,8 +26,10 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Set global prefix
-  app.setGlobalPrefix('api');
+  // Set global prefix (exclude root health check)
+  app.setGlobalPrefix('api', {
+    exclude: ['/'],
+  });
 
   // Swagger API Documentation
   const config = new DocumentBuilder()
