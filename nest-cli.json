@@ -7,7 +7,7 @@
     "assets": [
       {
         "include": "legacy-data/**/*",
-        "outDir": "dist/src/legacy-data"
+        "outDir": "dist/src"
       }
     ]
   }
