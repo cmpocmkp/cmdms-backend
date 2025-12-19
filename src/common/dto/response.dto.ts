@@ -1,7 +1,26 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+
 export class ResponseDto<T> {
+  @ApiProperty({
+    description: 'Indicates if the request was successful',
+    example: true,
+  })
   success: boolean;
+
+  @ApiPropertyOptional({
+    description: 'Response message',
+    example: 'Operation completed successfully',
+  })
   message?: string;
+
+  @ApiPropertyOptional({
+    description: 'Response data',
+  })
   data?: T;
+
+  @ApiPropertyOptional({
+    description: 'Additional metadata (pagination, etc.)',
+  })
   metadata?: any;
 
   constructor(success: boolean, data?: T, message?: string, metadata?: any) {
