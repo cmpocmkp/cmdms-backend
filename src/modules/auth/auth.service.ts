@@ -20,7 +20,7 @@ export class AuthService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   async login(loginDto: LoginDto) {
     const user = await this.userRepository.findOne({
@@ -35,9 +35,15 @@ export class AuthService {
       throw new UnauthorizedException('User account is inactive');
     }
 
+    let storedPassword = user.password;
+    // Fix for legacy PHP Bcrypt hashes ($2y$) which Node bcrypt ($2b$ or $2a$) might not handle
+    if (storedPassword.startsWith('$2y$')) {
+      storedPassword = storedPassword.replace(/^\$2y\$/, '$2b$');
+    }
+
     const isPasswordValid = await bcrypt.compare(
       loginDto.password,
-      user.password,
+      storedPassword,
     );
 
     if (!isPasswordValid) {
@@ -74,9 +80,14 @@ export class AuthService {
       throw new UnauthorizedException('User not found');
     }
 
+    let storedPassword = user.password;
+    if (storedPassword.startsWith('$2y$')) {
+      storedPassword = storedPassword.replace(/^\$2y\$/, '$2b$');
+    }
+
     const isOldPasswordValid = await bcrypt.compare(
       changePasswordDto.oldPassword,
-      user.password,
+      storedPassword,
     );
 
     if (!isOldPasswordValid) {
