@@ -1,5 +1,6 @@
 import { Controller, Get, Query, UseGuards, ParseIntPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { ReportsService } from './reports.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @ApiTags('reports')
@@ -7,21 +8,14 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 @UseGuards(JwtAuthGuard)
 @Controller('reports')
 export class ReportsController {
+  constructor(private readonly reportsService: ReportsService) { }
+
   // Dashboard Analytics
   @Get('dashboard')
   @ApiOperation({ summary: 'Get dashboard summary statistics' })
   @ApiResponse({ status: 200, description: 'Dashboard statistics and KPIs' })
   async getDashboard() {
-    return {
-      data: {
-        totalMeetings: 0,
-        totalMinutes: 0,
-        totalDirectives: 0,
-        totalComplaints: 0,
-        pendingTasks: 0,
-        overdueTasks: 0,
-      },
-    };
+    return this.reportsService.getDashboard();
   }
 
   // Meeting Reports
@@ -57,7 +51,7 @@ export class ReportsController {
     @Query('startDate') startDate?: string,
     @Query('endDate') endDate?: string
   ) {
-    return { data: [] };
+    return this.reportsService.getDepartmentPerformance(startDate, endDate);
   }
 
   // Compliance Reports

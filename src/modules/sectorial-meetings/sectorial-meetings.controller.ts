@@ -4,18 +4,21 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreateSectorialMeetingDto } from './dto/create-sectorial-meeting.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
+import { SectorialMeetingsService } from './sectorial-meetings.service';
 
 @ApiTags('sectorial-meetings')
 @ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('sectorial-meetings')
 export class SectorialMeetingsController {
+  constructor(private readonly sectorialMeetingsService: SectorialMeetingsService) { }
+
   @Post()
   @ApiOperation({ summary: 'Create a new sectorial meeting' })
   @ApiResponse({ status: 201, description: 'Sectorial meeting created successfully' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   async create(@Body() createDto: CreateSectorialMeetingDto, @CurrentUser('id') userId: number) {
-    return { message: 'Sectorial meeting created', data: createDto };
+    return this.sectorialMeetingsService.create(createDto, userId);
   }
 
   @Get()
@@ -23,7 +26,7 @@ export class SectorialMeetingsController {
   @ApiQuery({ type: PaginationDto })
   @ApiResponse({ status: 200, description: 'List of sectorial meetings' })
   async findAll(@Query() paginationDto: PaginationDto) {
-    return { data: [], metadata: { page: 1, limit: 10, total: 0 } };
+    return this.sectorialMeetingsService.findAll(paginationDto);
   }
 
   @Get(':id')
@@ -32,7 +35,7 @@ export class SectorialMeetingsController {
   @ApiResponse({ status: 200, description: 'Sectorial meeting details' })
   @ApiResponse({ status: 404, description: 'Sectorial meeting not found' })
   async findOne(@Param('id', ParseIntPipe) id: number) {
-    return { data: { id } };
+    return this.sectorialMeetingsService.findOne(id);
   }
 
   @Patch(':id')
@@ -40,7 +43,7 @@ export class SectorialMeetingsController {
   @ApiParam({ name: 'id', description: 'Sectorial Meeting ID' })
   @ApiResponse({ status: 200, description: 'Sectorial meeting updated successfully' })
   async update(@Param('id', ParseIntPipe) id: number, @Body() updateDto: any) {
-    return { message: 'Sectorial meeting updated', data: { id, ...updateDto } };
+    return this.sectorialMeetingsService.update(id, updateDto);
   }
 
   @Delete(':id')
@@ -48,7 +51,7 @@ export class SectorialMeetingsController {
   @ApiParam({ name: 'id', description: 'Sectorial Meeting ID' })
   @ApiResponse({ status: 200, description: 'Sectorial meeting deleted successfully' })
   async remove(@Param('id', ParseIntPipe) id: number) {
-    return { message: 'Sectorial meeting deleted' };
+    return this.sectorialMeetingsService.remove(id);
   }
 }
 

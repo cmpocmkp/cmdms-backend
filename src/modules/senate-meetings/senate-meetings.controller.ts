@@ -4,18 +4,21 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { CreateSenateMeetingDto } from './dto/create-senate-meeting.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
+import { SenateMeetingsService } from './senate-meetings.service';
 
 @ApiTags('senate-meetings')
 @ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('senate-meetings')
 export class SenateMeetingsController {
+  constructor(private readonly senateMeetingsService: SenateMeetingsService) { }
+
   @Post()
   @ApiOperation({ summary: 'Create a new senate meeting', description: 'Creates a new university senate meeting record' })
   @ApiResponse({ status: 201, description: 'Senate meeting created successfully' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   async create(@Body() createDto: CreateSenateMeetingDto, @CurrentUser('id') userId: number) {
-    return { message: 'Senate meeting created', data: createDto };
+    return this.senateMeetingsService.create(createDto, userId);
   }
 
   @Get()
@@ -23,7 +26,7 @@ export class SenateMeetingsController {
   @ApiQuery({ type: PaginationDto })
   @ApiResponse({ status: 200, description: 'List of senate meetings' })
   async findAll(@Query() paginationDto: PaginationDto) {
-    return { data: [], metadata: { page: 1, limit: 10, total: 0 } };
+    return this.senateMeetingsService.findAll(paginationDto);
   }
 
   @Get(':id')
@@ -32,7 +35,7 @@ export class SenateMeetingsController {
   @ApiResponse({ status: 200, description: 'Senate meeting details with minutes' })
   @ApiResponse({ status: 404, description: 'Senate meeting not found' })
   async findOne(@Param('id', ParseIntPipe) id: number) {
-    return { data: { id } };
+    return this.senateMeetingsService.findOne(id);
   }
 
   @Patch(':id')
@@ -40,7 +43,7 @@ export class SenateMeetingsController {
   @ApiParam({ name: 'id', description: 'Senate Meeting ID' })
   @ApiResponse({ status: 200, description: 'Senate meeting updated successfully' })
   async update(@Param('id', ParseIntPipe) id: number, @Body() updateDto: any) {
-    return { message: 'Senate meeting updated', data: { id, ...updateDto } };
+    return this.senateMeetingsService.update(id, updateDto);
   }
 
   @Delete(':id')
@@ -48,7 +51,7 @@ export class SenateMeetingsController {
   @ApiParam({ name: 'id', description: 'Senate Meeting ID' })
   @ApiResponse({ status: 200, description: 'Senate meeting deleted successfully' })
   async remove(@Param('id', ParseIntPipe) id: number) {
-    return { message: 'Senate meeting deleted' };
+    return this.senateMeetingsService.remove(id);
   }
 }
 
