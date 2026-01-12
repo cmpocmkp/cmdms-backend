@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { AuditableEntity } from '../../../common/entities/base.entity';
 import { Department } from '../../departments/entities/department.entity';
 import { DecisionStatus } from '../../../common/enums';
@@ -40,5 +40,8 @@ export class CmRemark extends AuditableEntity {
     inverseJoinColumn: { name: 'department_id' },
   })
   departments: Department[];
+
+  @OneToMany('CMRemarkResponse', 'cmRemark')
+  responses: any[];
 }
 
