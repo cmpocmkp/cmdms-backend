@@ -26,6 +26,7 @@
     "migration:create": "npm run typeorm -- migration:create",
     "migrate:legacy": "ts-node -r tsconfig-paths/register src/scripts/migrate-legacy-data.ts",
     "migrate:legacy:simple": "ts-node -r tsconfig-paths/register src/scripts/migrate-legacy-simple.ts",
+    "migrate:modules": "ts-node -r tsconfig-paths/register src/scripts/migrate-missing-modules.ts",
     "check:migration": "ts-node -r tsconfig-paths/register src/scripts/pre-migration-check.ts"
   },
   "dependencies": {

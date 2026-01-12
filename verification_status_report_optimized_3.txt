@@ -1,0 +1,58 @@
+Database connected.
+----------------------------------------------------------------
+| File Name                           | JSON Records | DB Records | Status     |
+----------------------------------------------------------------
+| activities.json                     | 130          | 0          | NO MAPPING | 
+| activity_department.json            | 151          | 0          | NO MAPPING | 
+| activity_logs.json                  | 157775       | 0          | NO MAPPING | 
+| activity_replies.json               | 0            | 0          | NO MAPPING | 
+| agenda_points.json                  | 447          | 474        | OK         | 
+| allocations.json                    | 20           | 0          | NO MAPPING | 
+| annonucement_replies.json           | 569          | 3983       | OK         | 
+| announcement_detail_other_departments.json | 299          | 0          | NO MAPPING | 
+| announcement_details.json           | 283          | 1957       | OK         | 
+| announcements.json                  | 35           | 245        | OK         | 
+| annual_scheme_candidate.json        | 0            | 0          | NO MAPPING | 
+| annual_scheme_district.json         | 0            | 0          | NO MAPPING | 
+| annual_schemes.json                 | 20           | 0          | MISSING    | 
+| board_acts.json                     | 22           | 70         | OK         | 
+| board_details.json                  | 20           | 360        | OK         | 
+| board_meetings.json                 | 59           | 375        | OK         | 
+| board_members.json                  | 244          | 1386       | OK         | 
+| board_replies.json                  | 182          | 0          | NO MAPPING | 
+| candidate_requests.json             | 0            | 0          | NO MAPPING | 
+| candidates.json                     | 0            | 0          | NO MAPPING | 
+| categories.json                     | 36           | 0          | NO MAPPING | 
+| cm_ptf_responses.json               | 76           | 0          | MISSING    | 
+| cm_remark_department.json           | 0            | 0          | NO MAPPING | 
+| cm_remark_replies.json              | 0            | 0          | NO MAPPING | 
+| cm_remarks.json                     | 0            | 0          | NO MAPPING | 
+| complaint_replies.json              | 240          | 1280       | OK         | 
+| complaints.json                     | 200          | 1773       | OK         | 
+| constituencies.json                 | 155          | 0          | NO MAPPING | 
+| costs.json                          | 20           | 0          | NO MAPPING | 
+| department_directive.json           | 716          | 716        | OK         | 
+| department_khushhal_kpk.json        | 0            | 0          | NO MAPPING | 
+| department_minute.json              | 12965        | 3785       | PARTIAL    | 
+| department_review_meeting.json      | 145          | 0          | NO MAPPING | 
+| department_sector_agenda_point.json | 1177         | 0          | MISSING    | 
+| department_types.json               | 4            | 62         | OK         | 
+| department_user.json                | 4796         | 0          | DB ERROR   | (Table not found)
+| departments.json                    | 209          | 209        | OK         | 
+| directive_replies.json              | 1618         | 1613       | PARTIAL    | 
+| directives.json                     | 354          | 0          | MISSING    | 
+| districts.json                      | 42           | 510        | OK         | 
+| expenditures.json                   | 20           | 0          | NO MAPPING | 
+| fund_distributions.json             | 0            | 0          | NO MAPPING | 
+| images.json                         | 162          | 0          | MISSING    | 
+| inaugurations.json                  | 778          | 0          | MISSING    | 
+| interventions.json                  | 18           | 0          | NO MAPPING | 
+| issues.json                         | 237          | 0          | MISSING    | 
+| khushhal_kpks.json                  | 0            | 0          | OK         | 
+| khushhal_progress.json              | 0            | 0          | OK         | 
+| khushhal_replies.json               | 0            | 0          | OK         | 
+| through_forwards.json               | 20           | 0          | NO MAPPING | 
+| user_groups.json                    | 35           | 35         | OK         | 
+| users.json                          | 274          | 548        | OK         | 
+| welfare_initiatives.json            | 19           | 0          | NO MAPPING | 
+----------------------------------------------------------------
