@@ -44,6 +44,9 @@ export class PtfIssue extends AuditableEntity {
   @Column({ type: 'text', nullable: true, name: 'expected_outcome' })
   expectedOutcome: string;
 
+  @Column({ type: 'text', nullable: true, name: 'way_forward' })
+  wayForward: string;
+
   @Column({ name: 'is_closed', default: false })
   isClosed: boolean;
 

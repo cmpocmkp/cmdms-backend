@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, ManyToMany, JoinTable, JoinColumn, OneToMany } from 'typeorm';
 import { AuditableEntity } from '../../../common/entities/base.entity';
 import { BoardMeeting } from './board-meeting.entity';
 import { Department } from '../../departments/entities/department.entity';
@@ -52,5 +52,8 @@ export class BoardAgenda extends AuditableEntity {
     inverseJoinColumn: { name: 'department_id' },
   })
   relatedDepartments: Department[];
+
+  @OneToMany('BoardAgendaReply', 'boardAgenda')
+  replies: any[];
 }
 

@@ -63,4 +63,9 @@ export class CreatePtfIssueDto {
     @IsString()
     @IsOptional()
     expectedOutcome?: string;
+
+    @ApiPropertyOptional()
+    @IsString()
+    @IsOptional()
+    wayForward?: string;
 }
