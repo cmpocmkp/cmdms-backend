@@ -6,13 +6,13 @@ import { CreatePublicDayDto } from './dto/create-public-day.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
 @ApiTags('public-days')
-@ApiBearerAuth()
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('public-days')
 export class PublicDaysController {
   @Post()
-  @ApiOperation({ 
-    summary: 'Record a new public day event', 
+  @ApiOperation({
+    summary: 'Record a new public day event',
     description: 'Creates a record of CM public day with applications received and resolved'
   })
   @ApiResponse({ status: 201, description: 'Public day record created successfully' })
@@ -34,13 +34,13 @@ export class PublicDaysController {
   @ApiOperation({ summary: 'Get public days statistics' })
   @ApiResponse({ status: 200, description: 'Public days statistics and summary' })
   async getStats() {
-    return { 
-      data: { 
-        totalEvents: 0, 
-        totalApplications: 0, 
-        totalResolved: 0, 
-        resolutionRate: 0 
-      } 
+    return {
+      data: {
+        totalEvents: 0,
+        totalApplications: 0,
+        totalResolved: 0,
+        resolutionRate: 0
+      }
     };
   }
 

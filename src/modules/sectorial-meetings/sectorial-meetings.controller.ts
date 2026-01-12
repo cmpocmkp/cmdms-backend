@@ -6,7 +6,7 @@ import { CreateSectorialMeetingDto } from './dto/create-sectorial-meeting.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
 @ApiTags('sectorial-meetings')
-@ApiBearerAuth()
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('sectorial-meetings')
 export class SectorialMeetingsController {

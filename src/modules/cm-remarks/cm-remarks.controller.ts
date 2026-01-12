@@ -6,13 +6,13 @@ import { CreateCmRemarkDto } from './dto/create-cm-remark.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
 @ApiTags('cm-remarks')
-@ApiBearerAuth()
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('cm-remarks')
 export class CmRemarksController {
   @Post()
-  @ApiOperation({ 
-    summary: 'Create a new CM remark', 
+  @ApiOperation({
+    summary: 'Create a new CM remark',
     description: 'Records a new remark or intervention from the Chief Minister with department assignments'
   })
   @ApiResponse({ status: 201, description: 'CM remark created successfully' })

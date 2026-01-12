@@ -6,7 +6,7 @@ import { CreateSenateMeetingDto } from './dto/create-senate-meeting.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
 @ApiTags('senate-meetings')
-@ApiBearerAuth()
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('senate-meetings')
 export class SenateMeetingsController {

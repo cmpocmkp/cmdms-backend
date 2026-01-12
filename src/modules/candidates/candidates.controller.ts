@@ -6,13 +6,13 @@ import { CreateCandidateDto } from './dto/create-candidate.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
 @ApiTags('candidates')
-@ApiBearerAuth()
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('candidates')
 export class CandidatesController {
   @Post()
-  @ApiOperation({ 
-    summary: 'Add a new candidate (MNA/MPA)', 
+  @ApiOperation({
+    summary: 'Add a new candidate (MNA/MPA)',
     description: 'Registers a new Member of National/Provincial Assembly with constituency details'
   })
   @ApiResponse({ status: 201, description: 'Candidate added successfully' })

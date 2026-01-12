@@ -6,13 +6,13 @@ import { CreateLetterDto } from './dto/create-letter.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
 @ApiTags('letters')
-@ApiBearerAuth()
+@ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
 @Controller('letters')
 export class LettersController {
   @Post()
-  @ApiOperation({ 
-    summary: 'Create a new letter/document', 
+  @ApiOperation({
+    summary: 'Create a new letter/document',
     description: 'Generates a new official letter, notice, circular, or memo with optional references'
   })
   @ApiResponse({ status: 201, description: 'Letter created successfully' })
