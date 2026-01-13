@@ -77,6 +77,8 @@ const FILE_TABLE_MAP: Record<string, string> = {
     // Others that might be pivot tables or ignored
     'department_sector_agenda_point.json': 'board_agenda_department',
     'sectorial_agenda_points.json': 'board_agendas',
+    'meetings.json': 'meetings',
+    'tasks_tasks.json': 'tasks',
     // 'department_user.json': 'department_user', 
 };
 

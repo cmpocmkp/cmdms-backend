@@ -409,7 +409,7 @@ const MIGRATION_MAP: MigrationConfig[] = [
 
     // 6. Activity Logs
     {
-        file: 'activity_logs.json', entity: ActivityLog, transform: (i) => {
+        file: 'activity_logs.json', entity: ActivityLog, skip: true, transform: (i) => {
             // Normalize Subject Type (action_model)
             let subjectType = i.action_model || 'System';
             if (subjectType.includes('\\')) {
@@ -492,7 +492,7 @@ const MIGRATION_MAP: MigrationConfig[] = [
             districtId: i.district_id ? parseInt(i.district_id) : null,
         })
     },
-    { file: 'candidates.json', entity: Candidate },
+    { file: 'candidates.json', entity: Candidate, skip: true },
 
     // 9. Directives
     {
@@ -539,11 +539,11 @@ const MIGRATION_MAP: MigrationConfig[] = [
 
     // 12. Minutes
     { file: 'department_minute.json', entity: Minute, skip: true },
-    { file: 'directive_replies.json', entity: Reply },
+    { file: 'directive_replies.json', entity: Reply, skip: true },
 
     // 13. PTF
     {
-        file: 'cm_ptf_responses.json', entity: PtfResponse, transform: (i) => ({
+        file: 'cm_ptf_responses.json', entity: PtfResponse, skip: true, transform: (i) => ({
             ...i,
             response: i.remarks || 'No Response',
             ptfIssueId: parseInt(i.ptf_issue_id),
@@ -554,7 +554,7 @@ const MIGRATION_MAP: MigrationConfig[] = [
 
     // 14. Schemes
     {
-        file: 'annual_schemes.json', entity: AnnualScheme, transform: (i) => ({
+        file: 'annual_schemes.json', entity: AnnualScheme, skip: true, transform: (i) => ({
             ...i,
             name: i.name || 'Untitled Scheme',
             estimatedCost: i.cost ? parseFloat(i.cost) : 0,
@@ -567,23 +567,23 @@ const MIGRATION_MAP: MigrationConfig[] = [
     },
 
     // 15. KPI
-    { file: 'kpi.json', entity: Kpi },
-    { file: 'kpi_data.json', entity: KpiData },
+    { file: 'kpi.json', entity: Kpi, skip: true },
+    { file: 'kpi_data.json', entity: KpiData, skip: true },
 
     // 16. Khushhal
-    { file: 'khushhal_progress.json', entity: KhushhalProgress },
-    { file: 'khushhal_replies.json', entity: KhushhalReply },
-    { file: 'khushhal_kpks.json', entity: KhushhalTask },
+    { file: 'khushhal_progress.json', entity: KhushhalProgress, skip: true },
+    { file: 'khushhal_replies.json', entity: KhushhalReply, skip: true },
+    { file: 'khushhal_kpks.json', entity: KhushhalTask, skip: true },
 
     // 17. Inaugurations
-    { file: 'inaugurations.json', entity: Inauguration },
+    { file: 'inaugurations.json', entity: Inauguration, skip: true },
 
     // 18. Files
-    { file: 'images.json', entity: File },
+    { file: 'images.json', entity: File, skip: true },
 
     // 19. PTF Meetings
     {
-        file: 'ptf_meetings.json', entity: PtfMeeting, transform: (i) => ({
+        file: 'ptf_meetings.json', entity: PtfMeeting, skip: true, transform: (i) => ({
             ...i,
             date: i.date ? new Date(i.date) : new Date(),
             venue: i.venue || null,
