@@ -53,5 +53,65 @@ export class SectorialMeetingsController {
   async remove(@Param('id', ParseIntPipe) id: number) {
     return this.sectorialMeetingsService.remove(id);
   }
+
+  // --- Agenda Points ---
+
+  @Get(':id/agenda-points')
+  @ApiOperation({ summary: 'Get all agenda points for a sectorial meeting' })
+  @ApiParam({ name: 'id', description: 'Sectorial Meeting ID' })
+  async getAgendaPoints(@Param('id', ParseIntPipe) id: number) {
+    return this.sectorialMeetingsService.getAgendaPoints(id);
+  }
+
+  @Post(':id/agenda-points')
+  @ApiOperation({ summary: 'Create a new agenda point' })
+  @ApiParam({ name: 'id', description: 'Sectorial Meeting ID' })
+  async createAgenda(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createDto: any, // Using any to avoid import cycles if DTO is not exported or complex, but ideally specific DTO
+    @CurrentUser('id') userId: number
+  ) {
+    return this.sectorialMeetingsService.createAgenda(id, createDto, userId);
+  }
+
+  @Get(':id/agenda-points/:pointId')
+  @ApiOperation({ summary: 'Get a specific agenda point' })
+  async getAgendaPoint(@Param('pointId', ParseIntPipe) pointId: number) {
+    return this.sectorialMeetingsService.getAgendaPoint(pointId);
+  }
+
+  @Patch(':id/agenda-points/:pointId')
+  @ApiOperation({ summary: 'Update an agenda point' })
+  async updateAgendaPoint(
+    @Param('pointId', ParseIntPipe) pointId: number,
+    @Body() updateDto: any,
+    @CurrentUser('id') userId: number
+  ) {
+    return this.sectorialMeetingsService.updateAgendaPoint(pointId, updateDto, userId);
+  }
+
+  @Delete(':id/agenda-points/:pointId')
+  @ApiOperation({ summary: 'Delete an agenda point' })
+  async removeAgendaPoint(@Param('pointId', ParseIntPipe) pointId: number) {
+    return this.sectorialMeetingsService.removeAgendaPoint(pointId);
+  }
+
+  // --- Replies ---
+
+  @Get(':id/agenda-points/:pointId/replies')
+  @ApiOperation({ summary: 'Get replies for an agenda point' })
+  async getAgendaReplies(@Param('pointId', ParseIntPipe) pointId: number) {
+    return this.sectorialMeetingsService.getAgendaReplies(pointId);
+  }
+
+  @Post(':id/agenda-points/:pointId/replies')
+  @ApiOperation({ summary: 'Add reply to an agenda point' })
+  async addAgendaReply(
+    @Param('pointId', ParseIntPipe) pointId: number,
+    @Body() replyDto: any,
+    @CurrentUser('id') userId: number
+  ) {
+    return this.sectorialMeetingsService.addAgendaReply(pointId, replyDto, userId);
+  }
 }
 
