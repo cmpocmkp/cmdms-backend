@@ -17,6 +17,7 @@
 - [CM Remarks](#cm-remarks)
 - [PTF](#ptf)
 - [Boards](#boards)
+- [Trackers](#trackers)
 - [Sectoral Meetings](#sectoral-meetings)
 - [Schemes](#schemes)
 - [Inaugurations](#inaugurations)
@@ -843,6 +844,145 @@ curl -X POST 'https://cmdms-backend-production.up.railway.app/api/ptf/issues/20/
     "response": "Team dispatched to location",
     "departmentId": 15
   }'
+```
+
+---
+
+---
+
+## Trackers
+
+### List Trackers
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/trackers?page=1&limit=10&type=intervention&status=1' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "title": "Road Infrastructure Development",
+      "description": "Tracker description",
+      "type": "intervention",
+      "status": 1,
+      "progress": 45,
+      "budget": 50000000,
+      "startDate": "2024-01-01",
+      "endDate": "2024-12-31",
+      "departments": [
+        {"id": 15, "name": "Health Department"}
+      ],
+      "createdAt": "2024-01-15T10:00:00.000Z",
+      "updatedAt": "2024-01-15T10:00:00.000Z"
+    }
+  ],
+  "meta": {
+    "total": 100,
+    "page": 1,
+    "limit": 10,
+    "totalPages": 10
+  }
+}
+```
+
+### Get Tracker Details
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/trackers/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Create Tracker
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/trackers' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "title": "Road Infrastructure Development",
+    "description": "Tracker description",
+    "type": "intervention",
+    "status": 1,
+    "budget": 50000000,
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "departmentIds": [15, 20],
+    "activities": [
+      {
+        "title": "Activity title",
+        "description": "Activity description",
+        "departmentId": 15
+      }
+    ]
+  }'
+```
+
+### Update Tracker
+```bash
+curl -X PATCH 'https://cmdms-backend-production.up.railway.app/api/trackers/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "title": "Updated Title",
+    "status": 2,
+    "progress": 60,
+    "budget": 55000000
+  }'
+```
+
+### Delete Tracker
+```bash
+curl -X DELETE 'https://cmdms-backend-production.up.railway.app/api/trackers/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Tracker Activities
+
+#### List Tracker Activities
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/trackers/1/activities' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Create Tracker Activity
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/trackers/1/activities' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "title": "Activity title",
+    "description": "Activity description",
+    "departmentId": 15,
+    "status": 1
+  }'
+```
+
+#### Update Tracker Activity
+```bash
+curl -X PATCH 'https://cmdms-backend-production.up.railway.app/api/trackers/1/activities/10' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "status": 2,
+    "progress": 75,
+    "title": "Updated activity title"
+  }'
+```
+
+#### Delete Tracker Activity
+```bash
+curl -X DELETE 'https://cmdms-backend-production.up.railway.app/api/trackers/1/activities/10' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Assign Tracker to Departments
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/trackers/1/assign' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"departmentIds": [15, 20, 25]}'
 ```
 
 ---
@@ -2068,6 +2208,56 @@ curl -X POST 'https://cmdms-backend-production.up.railway.app/api/letters/10/sen
   -d '{"email":"recipient@cmdms.gov.pk"}'
 ```
 
+### Get Board Act
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/boards/1/acts/5' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### List Board Members
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/boards/1/members' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 5,
+      "userId": 10,
+      "boardId": 2,
+      "role": "Member",
+      "designation": "Secretary Finance",
+      "status": "active",
+      "user": {
+        "id": 10,
+        "name": "John Doe",
+        "email": "john@cmdms.gov.pk"
+      }
+    }
+  ]
+}
+```
+
+### Agenda Replies
+
+#### Get Agenda Replies
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/boards/1/meetings/10/agenda-points/5/replies' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Add Agenda Reply
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/boards/1/meetings/10/agenda-points/5/replies' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"content":"Reply to agenda point"}'
+```
+
 ---
 
 ## Reports
@@ -2268,6 +2458,49 @@ curl 'https://cmdms-backend-production.up.railway.app/api/reports/export/meeting
 curl 'https://cmdms-backend-production.up.railway.app/api/reports/export/minutes?format=xlsx&meetingId=5' \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -o minutes_report.xlsx
+```
+
+### Module-wise Statistics
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/reports/modules/statistics?fromDate=2024-01-01&toDate=2024-12-31' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "modules": [
+      {
+        "module": "interventions",
+        "moduleName": "Trackers",
+        "totalTasks": 2000,
+        "completed": 1500,
+        "pending": 400,
+        "overdue": 100,
+        "onTarget": 350
+      }
+    ],
+    "totals": {
+      "totalTasks": 2000,
+      "totalCompleted": 1500,
+      "totalPending": 400
+    }
+  }
+}
+```
+
+### Board Meeting Detail Report
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/reports/board-meetings/detail/1/10' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Board Act Detail Report
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/reports/board-acts/detail/1/5' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
 ```
 
 ---

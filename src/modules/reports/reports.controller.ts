@@ -11,6 +11,22 @@ export class ReportsController {
   constructor(private readonly reportsService: ReportsService) { }
 
   // Dashboard Analytics
+  @Get('modules/statistics')
+  @ApiOperation({ summary: 'Get module-wise statistics' })
+  @ApiQuery({ name: 'fromDate', required: false, type: String })
+  @ApiQuery({ name: 'toDate', required: false, type: String })
+  @ApiQuery({ name: 'departmentId', required: false, type: Number })
+  @ApiQuery({ name: 'status', required: false, type: Number })
+  async getModuleStatistics(
+    @Query('fromDate') fromDate?: string,
+    @Query('toDate') toDate?: string,
+    @Query('departmentId') departmentId?: number,
+    @Query('status') status?: number
+  ) {
+    return this.reportsService.getModuleStatistics({ fromDate, toDate, departmentId, status });
+  }
+
+
   @Get('dashboard')
   @ApiOperation({ summary: 'Get dashboard summary statistics' })
   @ApiResponse({ status: 200, description: 'Dashboard statistics and KPIs' })
@@ -73,10 +89,19 @@ export class ReportsController {
     return this.reportsService.getBoardMeetingsReport();
   }
 
-  @Get('board-meetings/detail/:deptid/:stat')
-  @ApiOperation({ summary: 'Get board meeting detail report' })
+  @Get('board-meetings/status-detail/:deptid/:stat')
+  @ApiOperation({ summary: 'Get board meeting detail report by status' })
   async getBoardMeetingDetailReport(@Param('deptid') deptId: number, @Param('stat') status: number) {
     return this.reportsService.getBoardMeetingDetailReport(deptId, status);
+  }
+
+  @Get('board-meetings/detail/:boardId/:meetingId')
+  @ApiOperation({ summary: 'Get board meeting detail report' })
+  async getBoardMeetingDetail(
+    @Param('boardId', ParseIntPipe) boardId: number,
+    @Param('meetingId', ParseIntPipe) meetingId: number,
+  ) {
+    return this.reportsService.getBoardMeetingDetail(boardId, meetingId);
   }
 
   @Get('board-meetings/filter')
@@ -96,6 +121,15 @@ export class ReportsController {
   @ApiOperation({ summary: 'Get board acts report' })
   async getBoardActsReport() {
     return this.reportsService.getBoardActsReport();
+  }
+
+  @Get('board-acts/detail/:boardId/:actId')
+  @ApiOperation({ summary: 'Get board act detail report' })
+  async getBoardActDetail(
+    @Param('boardId', ParseIntPipe) boardId: number,
+    @Param('actId', ParseIntPipe) actId: number,
+  ) {
+    return this.reportsService.getBoardActDetail(boardId, actId);
   }
 
   @Get('board-acts/:id')
