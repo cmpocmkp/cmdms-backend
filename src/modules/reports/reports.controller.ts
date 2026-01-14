@@ -17,6 +17,7 @@ export class ReportsController {
   @ApiQuery({ name: 'toDate', required: false, type: String })
   @ApiQuery({ name: 'departmentId', required: false, type: Number })
   @ApiQuery({ name: 'status', required: false, type: Number })
+  @ApiResponse({ status: 200, description: 'Module-wise statistics including completion rates' })
   async getModuleStatistics(
     @Query('fromDate') fromDate?: string,
     @Query('toDate') toDate?: string,
@@ -97,6 +98,7 @@ export class ReportsController {
 
   @Get('board-meetings/detail/:boardId/:meetingId')
   @ApiOperation({ summary: 'Get board meeting detail report' })
+  @ApiResponse({ status: 200, description: 'Detailed board meeting report including agenda items' })
   async getBoardMeetingDetail(
     @Param('boardId', ParseIntPipe) boardId: number,
     @Param('meetingId', ParseIntPipe) meetingId: number,
@@ -125,6 +127,7 @@ export class ReportsController {
 
   @Get('board-acts/detail/:boardId/:actId')
   @ApiOperation({ summary: 'Get board act detail report' })
+  @ApiResponse({ status: 200, description: 'Detailed board act report including department assignments' })
   async getBoardActDetail(
     @Param('boardId', ParseIntPipe) boardId: number,
     @Param('actId', ParseIntPipe) actId: number,

@@ -69,6 +69,7 @@ export class BoardsController {
 
   @Get(':id/members')
   @ApiOperation({ summary: 'Get all members of a board' })
+  @ApiResponse({ status: 200, description: 'List of board members with user details' })
   async getMembers(@Param('id', ParseIntPipe) boardId: number) {
     const members = await this.boardsService.getMembers(boardId);
     return ResponseDto.success(members);
@@ -136,6 +137,7 @@ export class BoardsController {
 
   @Get(':id/meetings/:meetingId')
   @ApiOperation({ summary: 'Get a specific meeting' })
+  @ApiResponse({ status: 200, description: 'Board meeting details' })
   async getMeeting(@Param('meetingId', ParseIntPipe) meetingId: number) {
     const meeting = await this.boardsService.findMeeting(meetingId);
     return ResponseDto.success(meeting);
@@ -172,6 +174,7 @@ export class BoardsController {
 
   @Get(':id/acts/:actId')
   @ApiOperation({ summary: 'Get a specific act' })
+  @ApiResponse({ status: 200, description: 'Board act details including responsible department' })
   async getAct(@Param('actId', ParseIntPipe) actId: number) {
     const act = await this.boardsService.getAct(actId);
     return ResponseDto.success(act);
@@ -180,6 +183,7 @@ export class BoardsController {
   @Post(':id/acts')
   @Roles(RolesEnum.ADMIN, RolesEnum.DEPARTMENT)
   @ApiOperation({ summary: 'Record a board act/resolution' })
+  @ApiResponse({ status: 201, description: 'Act recorded successfully' })
   async createAct(
     @Param('id', ParseIntPipe) boardId: number,
     @Body() actDto: CreateBoardActDto,

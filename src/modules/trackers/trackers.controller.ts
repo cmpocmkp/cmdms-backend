@@ -18,12 +18,14 @@ export class TrackersController {
 
     @Post()
     @ApiOperation({ summary: 'Create a new tracker' })
+    @ApiResponse({ status: 201, description: 'Tracker created successfully' })
     create(@Body() createTrackerDto: CreateTrackerDto) {
         return this.trackersService.create(createTrackerDto);
     }
 
     @Get()
     @ApiOperation({ summary: 'List all trackers' })
+    @ApiResponse({ status: 200, description: 'List of trackers with pagination metadata' })
     @ApiQuery({ name: 'page', required: false })
     @ApiQuery({ name: 'limit', required: false })
     @ApiQuery({ name: 'type', required: false })
@@ -40,24 +42,28 @@ export class TrackersController {
 
     @Get(':id')
     @ApiOperation({ summary: 'Get tracker details' })
+    @ApiResponse({ status: 200, description: 'Tracker details including activities and replies' })
     findOne(@Param('id', ParseIntPipe) id: number) {
         return this.trackersService.findOne(id);
     }
 
     @Patch(':id')
     @ApiOperation({ summary: 'Update a tracker' })
+    @ApiResponse({ status: 200, description: 'Tracker updated successfully' })
     update(@Param('id', ParseIntPipe) id: number, @Body() updateTrackerDto: UpdateTrackerDto) {
         return this.trackersService.update(id, updateTrackerDto);
     }
 
     @Delete(':id')
     @ApiOperation({ summary: 'Delete a tracker' })
+    @ApiResponse({ status: 200, description: 'Tracker deleted successfully' })
     remove(@Param('id', ParseIntPipe) id: number) {
         return this.trackersService.remove(id);
     }
 
     @Post(':id/assign')
     @ApiOperation({ summary: 'Assign tracker to departments' })
+    @ApiResponse({ status: 200, description: 'Tracker assigned to departments successfully' })
     assignDepartments(@Param('id', ParseIntPipe) id: number, @Body() assignDto: AssignTrackerDto) {
         return this.trackersService.assignDepartments(id, assignDto);
     }
@@ -105,6 +111,7 @@ export class TrackersController {
 
     @Post(':id/replies')
     @ApiOperation({ summary: 'Create tracker reply' })
+    @ApiResponse({ status: 201, description: 'Reply created successfully' })
     createReply(
         @Param('id', ParseIntPipe) id: number,
         @Body() createReplyDto: CreateTrackerReplyDto,
@@ -125,6 +132,7 @@ export class TrackersController {
 
     @Post(':id/activities/:activityId/replies')
     @ApiOperation({ summary: 'Create activity reply' })
+    @ApiResponse({ status: 201, description: 'Activity reply created successfully' })
     createActivityReply(
         @Param('id', ParseIntPipe) trackerId: number,
         @Param('activityId', ParseIntPipe) activityId: number,
