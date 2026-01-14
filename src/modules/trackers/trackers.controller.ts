@@ -115,7 +115,7 @@ export class TrackersController {
     createReply(
         @Param('id', ParseIntPipe) id: number,
         @Body() createReplyDto: CreateTrackerReplyDto,
-        @Request() req
+        @Request() req: any
     ) {
         const userId = req.user.id;
         return this.trackersService.createReply(id, userId, createReplyDto);
@@ -137,7 +137,7 @@ export class TrackersController {
         @Param('id', ParseIntPipe) trackerId: number,
         @Param('activityId', ParseIntPipe) activityId: number,
         @Body() createReplyDto: CreateTrackerReplyDto,
-        @Request() req
+        @Request() req: any
     ) {
         const userId = req.user.id;
         return this.trackersService.createActivityReply(activityId, userId, createReplyDto);
