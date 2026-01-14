@@ -2559,6 +2559,261 @@ Common query parameters:
 
 ---
 
+## Summaries for CM
+
+### List Summaries
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/summaries?page=1&limit=10' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "referenceNumber": "SUM-2024-001",
+      "subject": "Health Infrastructure Development",
+      "description": "Summary description here",
+      "date": "2024-01-15",
+      "initiatorDepartmentId": 15,
+      "initiatorDepartment": {
+        "id": 15,
+        "name": "Health Department"
+      },
+      "status": 1,
+      "priority": "high",
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    }
+  ],
+  "meta": {
+    "total": 150,
+    "page": 1,
+    "limit": 10,
+    "totalPages": 15
+  }
+}
+```
+
+### Get Summary Details
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/summaries/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Create Summary
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/summaries' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "referenceNumber": "SUM-2024-001",
+    "subject": "Health Infrastructure Development",
+    "description": "Summary description",
+    "date": "2024-01-15",
+    "initiatorDepartmentId": 15,
+    "priority": "high",
+    "departmentIds": [15, 20],
+    "tasks": [
+      {
+        "title": "Task title",
+        "description": "Task description",
+        "departmentId": 15,
+        "timeline": "2024-06-30"
+      }
+    ]
+  }'
+```
+
+### Update Summary
+```bash
+curl -X PATCH 'https://cmdms-backend-production.up.railway.app/api/summaries/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "subject": "Updated Subject",
+    "status": 2,
+    "priority": "medium"
+  }'
+```
+
+### Delete Summary
+```bash
+curl -X DELETE 'https://cmdms-backend-production.up.railway.app/api/summaries/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Summary Tasks
+
+#### List Summary Tasks
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/summaries/1/tasks' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Create Summary Task
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/summaries/1/tasks' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "title": "Task title",
+    "departmentId": 15,
+    "timeline": "2024-06-30"
+  }'
+```
+
+#### Update Summary Task
+```bash
+curl -X PATCH 'https://cmdms-backend-production.up.railway.app/api/summaries/1/tasks/5' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"status": 2, "progress": 75}'
+```
+
+### Summary Replies
+
+#### Get Summary Replies
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/summaries/1/replies' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Create Summary Reply
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/summaries/1/replies' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"content": "Reply content here"}'
+```
+
+---
+
+## Trackers/Interventions
+
+### List Trackers
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/trackers?page=1&type=intervention' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "title": "Road Infrastructure Development",
+      "type": "intervention",
+      "status": 1,
+      "progress": 45,
+      "budget": 50000000,
+      "departments": [{"id": 15, "name": "Health Department"}]
+    }
+  ],
+  "meta": {"total": 100, "page": 1, "limit": 10}
+}
+```
+
+### Get Tracker Details
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/trackers/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Create Tracker
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/trackers' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "title": "Road Infrastructure Development",
+    "description": "Tracker description",
+    "type": "intervention",
+    "status": 1,
+    "budget": 50000000,
+    "departmentIds": [15, 20],
+    "activities": [
+      {
+        "title": "Activity title",
+        "description": "Activity description",
+        "departmentId": 15
+      }
+    ]
+  }'
+```
+
+### Update Tracker
+```bash
+curl -X PATCH 'https://cmdms-backend-production.up.railway.app/api/trackers/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"status": 2, "progress": 60}'
+```
+
+### Delete Tracker
+```bash
+curl -X DELETE 'https://cmdms-backend-production.up.railway.app/api/trackers/1' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+### Assign Tracker to Departments
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/trackers/1/assign' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"departmentIds": [15, 20, 25]}'
+```
+
+### Tracker Activities
+
+#### List Activities
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/trackers/1/activities' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Create Activity
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/trackers/1/activities' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "title": "Activity title",
+    "departmentId": 15,
+    "status": 1
+  }'
+```
+
+#### Update Activity
+```bash
+curl -X PATCH 'https://cmdms-backend-production.up.railway.app/api/trackers/1/activities/5' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"status": 2, "progress": 75}'
+```
+
+### Tracker Replies
+
+#### Get Replies
+```bash
+curl 'https://cmdms-backend-production.up.railway.app/api/trackers/1/replies' \
+  -H 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Create Reply
+```bash
+curl -X POST 'https://cmdms-backend-production.up.railway.app/api/trackers/1/replies' \
+  -H 'Authorization: Bearer YOUR_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"content": "Reply content here"}'
+```
+
+---
+
 ## Health Check
 
 ### API Health Check
