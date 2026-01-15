@@ -8,6 +8,8 @@ import { CreateSummaryReplyDto } from './dto/create-summary-reply.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
+import type { Request as ExpressRequest } from 'express';
+
 @ApiTags('summaries')
 @ApiBearerAuth('JWT-auth')
 @UseGuards(JwtAuthGuard)
@@ -100,9 +102,9 @@ export class SummariesController {
     createReply(
         @Param('id', ParseIntPipe) id: number,
         @Body() createReplyDto: CreateSummaryReplyDto,
-        @Request() req
+        @Request() req: ExpressRequest
     ) {
-        const userId = req.user.id;
+        const userId = (req.user as any).id;
         return this.summariesService.createReply(id, userId, createReplyDto);
     }
 }
